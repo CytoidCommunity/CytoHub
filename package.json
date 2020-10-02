@@ -1,0 +1,135 @@
+{
+  "name": "cytohub",
+  "description": "CytoLive Helper",
+  "version": "0.0.1",
+  "author": "CytoidCommunity <community@cytoid.io>",
+  "contributors": [
+    "AsakuraMizu <0xWATERx0@gmail.com>"
+  ],
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/electron/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CytoidCommunity/CytoHub.git"
+  },
+  "scripts": {
+    "build": "node .electron-vue/build.js && electron-builder",
+    "build:dir": "node .electron-vue/build.js && electron-builder --dir",
+    "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+    "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+    "dev": "node .electron-vue/dev-runner.js",
+    "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src",
+    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
+    "pack": "yarn run pack:main && yarn run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+    "postinstall": "yarn run lint:fix"
+  },
+  "build": {
+    "productName": "CytoHub",
+    "appId": "tech.solariar.cytohub",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "icon": "build/icons",
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "material-icons": "^0.3.1",
+    "typeface-roboto": "^0.0.75",
+    "vue": "^2.6.11",
+    "vue-electron": "^1.0.6",
+    "vue-material": "^1.0.0-beta-14",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.5.1",
+    "vuex-electron": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-stage-0": "^7.8.3",
+    "@babel/register": "^7.10.4",
+    "ajv": "^6.12.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "cfonts": "^2.8.4",
+    "chalk": "^4.1.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "del": "^5.1.0",
+    "devtron": "^1.4.0",
+    "electron": "^9.0.5",
+    "electron-builder": "^22.7.0",
+    "electron-debug": "^3.1.0",
+    "electron-devtools-installer": "^3.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^7.0.0-alpha.9",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "multispinner": "^0.2.1",
+    "node-loader": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^9.0.1",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "vue-html-loader": "^1.2.4",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "vue-template-loader": "^1.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.2.2"
+  }
+}
