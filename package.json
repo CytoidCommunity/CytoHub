@@ -116,7 +116,7 @@
     "multispinner": "^0.2.1",
     "node-loader": "^1.0.0",
     "node-sass": "^4.14.1",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^9.0.1",
     "style-loader": "^1.2.1",
